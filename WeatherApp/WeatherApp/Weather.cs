@@ -56,8 +56,8 @@ namespace WeatherApp
       else
         queryString = $"http://api.openweathermap.org/data/2.5/weather?zip={pZipCode},{pCountryCode}&appid={key}&units={unitsString}";
 
-      //Make sure developers running this sample replaced the API key
-      if (key != "CHANGE THIS STRING")
+      //Make sure developer has replaced the API key
+      if (key == "CHANGE THIS STRING")  //DO NOT CHANGE THIS STRING. 
         throw new ArgumentOutOfRangeException("You must obtain an API key from openweathermap.org/appid and save it in the 'key' variable.");
 
       dynamic results = null;
