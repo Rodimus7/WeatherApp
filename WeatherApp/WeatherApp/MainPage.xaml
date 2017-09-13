@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherApp"
+             xmlns:vm="clr-namespace:WeatherApp"
+             x:Class="WeatherApp.MainPage">
+
+    <!--<ContentPage.BindingContext>
+        <vm:Core/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:PercentageConverter x:Key="PercentageCustomString"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+        <StackLayout Margin="10,0,0,0" VerticalOptions="Start" HorizontalOptions="Start" WidthRequest="400" BackgroundColor="#545454">
+            <Label Text="Weather App" x:Name="lblTitle"/>
+
+            <StackLayout HorizontalOptions="Start" Margin="10,10,0,0" VerticalOptions="Start"  WidthRequest="400">
+                <Label Text="Search by Zip Code" FontAttributes="Bold" TextColor="White" Margin="10" x:Name="lblSearchCriteria" VerticalOptions="Start"/>
+                <Picker x:Name="cbxCountry" WidthRequest="200" SelectedItem="{Binding SelectedCountry, Mode=TwoWay}" SelectedIndex="0" Title="Country" TextColor="White"/>
+                <Label Text="Zip Code" TextColor="White" Margin="10" x:Name="lblZipCode"/>
+                <StackLayout  Orientation="Horizontal" VerticalOptions="Start">
+                    <Entry WidthRequest="100" x:Name="edtZipCode"  VerticalOptions="Start" Text="{Binding ZipCode, Mode=TwoWay}"/>
+                    <Button Text="{Binding ButtonContent}" x:Name="btnGetWeather"  VerticalOptions="Start" IsEnabled="{Binding CanGetWeather, Mode=TwoWay}" Command="{Binding GetWeather}"/>
+                </StackLayout>
+                <Label Text="{Binding ErrorMessage}" Margin="10" x:Name="lblErrorMessage" TextColor="DarkRed"/>
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Label Text ="Location" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding Title}" Margin="10,0,0,10" x:Name="txtLocation"/>
+            <Label Text ="Temperature" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding TemperatureDisplay}" Margin="10,0,0,10" x:Name="txtTemperature"/>
+            <Label Text ="Wind Speed" TextColor="#FFA8A8A8" FontSize="14"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text ="{Binding Wind}" Margin="10,0,0,10" x:Name="txtWind"/>
+                <Label Text ="{Binding WindUnits}" Margin="10,0,0,10" x:Name="txtWindUnits"/>
+            </StackLayout>
+            <Label Text ="Humidity" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding Humidity, Converter={StaticResource PercentageCustomString}, Mode=OneWay}" Margin="10,0,0,10" x:Name="txtHumidity"/>
+            <Label Text ="Visibility" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding Visibility}" Margin="10,0,0,10" x:Name="txtVisibility"/>
+            <Label Text ="Sunrise" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding Sunrise}" Margin="10,0,0,10" x:Name="txtSunrise"/>
+            <Label Text ="Sunset" TextColor="#FFA8A8A8" FontSize="14"/>
+            <Label Text ="{Binding Sunset}" Margin="10,0,0,10" x:Name="txtSunset"/>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
